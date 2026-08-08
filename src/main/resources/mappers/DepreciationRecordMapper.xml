@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crimsonlogic.corporateassetmanagementsystem.mapper.DepreciationRecordMapper">
+
+    <insert id="insertDepreciationRecord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO depreciation_records (depreciation_amount, calculation_date, asset_id, is_active)
+        VALUES (#{depreciationAmount}, #{calculationDate}, #{assetId}, #{isActive})
+    </insert>
+
+    <select id="getDepreciationRecordById" resultType="DepreciationRecord">
+        SELECT * FROM depreciation_records WHERE id = #{id} AND is_active = true
+    </select>
+
+    <select id="getAllDepreciationRecords" resultType="DepreciationRecord">
+        SELECT * FROM depreciation_records WHERE is_active = true
+    </select>
+
+    <select id="getDepreciationRecordsByAssetId" resultType="DepreciationRecord">
+        SELECT * FROM depreciation_records WHERE asset_id = #{assetId} AND is_active = true
+    </select>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crimsonlogic.corporateassetmanagementsystem.mapper.AssetMapper">
+
+    <insert id="insertAsset" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO assets (asset_name, status, purchase_cost, purchase_date, category_id, vendor_id, is_active)
+        VALUES (#{assetName}, #{status}, #{purchaseCost}, #{purchaseDate}, #{categoryId}, #{vendorId}, #{isActive})
+    </insert>
+
+    <select id="getAssetById" resultType="Asset">
+        SELECT * FROM assets WHERE id = #{id} AND is_active = true
+    </select>
+
+    <select id="getAllAssets" resultType="Asset">
+        SELECT * FROM assets WHERE is_active = true
+    </select>
+
+    <update id="updateAsset">
+        UPDATE assets
+        SET asset_name = #{assetName},
+        status = #{status},
+        purchase_cost = #{purchaseCost},
+        purchase_date = #{purchaseDate},
+        category_id = #{categoryId},
+        vendor_id = #{vendorId},
+        is_active = #{isActive}
+        WHERE id = #{id}
+    </update>
+
+    <update id="deleteAsset">
+        UPDATE assets SET is_active = false WHERE id = #{id}
+    </update>
+
+</mapper>

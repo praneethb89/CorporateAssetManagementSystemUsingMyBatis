@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crimsonlogic.corporateassetmanagementsystem.mapper.DisposalRequestMapper">
+
+    <insert id="insertDisposalRequest" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO disposal_requests (request_date, disposal_reason, disposal_method, disposal_value, request_status, asset_id, requested_by_id, is_active)
+        VALUES (#{requestDate}, #{disposalReason}, #{disposalMethod}, #{disposalValue}, #{requestStatus}, #{assetId}, #{requestedById}, #{isActive})
+    </insert>
+
+    <select id="getDisposalRequestById" resultType="DisposalRequest">
+        SELECT * FROM disposal_requests WHERE id = #{id} AND is_active = true
+    </select>
+
+    <select id="getAllDisposalRequests" resultType="DisposalRequest">
+        SELECT * FROM disposal_requests WHERE is_active = true
+    </select>
+
+    <update id="updateDisposalRequest">
+        UPDATE disposal_requests
+        SET request_date = #{requestDate},
+        disposal_reason = #{disposalReason},
+        disposal_method = #{disposalMethod},
+        disposal_value = #{disposalValue},
+        request_status = #{requestStatus},
+        asset_id = #{assetId},
+        requested_by_id = #{requestedById},
+        is_active = #{isActive}
+        WHERE id = #{id}
+    </update>
+
+</mapper>

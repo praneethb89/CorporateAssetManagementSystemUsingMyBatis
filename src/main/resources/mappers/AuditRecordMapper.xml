@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crimsonlogic.corporateassetmanagementsystem.mapper.AuditRecordMapper">
+
+    <insert id="insertAuditRecord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO audit_records (audit_date, auditor_name, audit_notes, audit_status, asset_id, is_active)
+        VALUES (#{auditDate}, #{auditorName}, #{auditNotes}, #{auditStatus}, #{assetId}, #{isActive})
+    </insert>
+
+    <select id="getAuditRecordById" resultType="AuditRecord">
+        SELECT * FROM audit_records WHERE id = #{id} AND is_active = true
+    </select>
+
+    <select id="getAllAuditRecords" resultType="AuditRecord">
+        SELECT * FROM audit_records WHERE is_active = true
+    </select>
+
+    <select id="getAuditRecordsByAssetId" resultType="AuditRecord">
+        SELECT * FROM audit_records WHERE asset_id = #{assetId} AND is_active = true
+    </select>
+
+</mapper>

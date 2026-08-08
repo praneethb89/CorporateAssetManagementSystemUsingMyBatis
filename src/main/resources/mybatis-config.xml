@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!-- 1. Load the db.properties file you just created -->
+    <properties resource="db.properties"/>
+
+    <!-- 2. Configure standard settings -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>
+
+    <!-- 3. Create Type Aliases so we don't have to type the full package name in our XML mappers -->
+    <typeAliases>
+        <package name="com.crimsonlogic.corporateassetmanagementsystem.entity"/>
+    </typeAliases>
+
+    <!-- 4. Setup the Database Environment using variables from db.properties -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${db.driver}"/>
+                <property name="url" value="${db.url}"/>
+                <property name="username" value="${db.username}"/>
+                <property name="password" value="${db.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 5. Register XML Mappers (We will add to this as we build the XML files) -->
+    <mappers>
+        <!-- Example: <mapper resource="mappers/AssetMapper.xml"/> -->
+        <mapper resource="mappers/EmployeeMapper.xml"/>
+        <mapper resource="mappers/AssetMapper.xml"/>
+        <mapper resource="mappers/AssetCategoryMapper.xml"/>
+        <mapper resource="mappers/VendorMapper.xml"/>
+        <mapper resource="mappers/AssetAllocationMapper.xml"/>
+        <mapper resource="mappers/MaintenanceRequestMapper.xml"/>
+        <mapper resource="mappers/WarrantyMapper.xml"/>
+        <mapper resource="mappers/DepreciationRecordMapper.xml"/>
+        <mapper resource="mappers/AuditRecordMapper.xml"/>
+        <mapper resource="mappers/DisposalRequestMapper.xml"/>
+    </mappers>
+
+</configuration>
